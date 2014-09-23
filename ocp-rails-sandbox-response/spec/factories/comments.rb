@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :comment do
-    body "MyText"
+    body Faker::Lorem.characters(500)
     post_id 1
   end
 end

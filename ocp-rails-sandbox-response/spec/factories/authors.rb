@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :author do
-    name "MyString"
+    name Faker::Lorem.characters(2)
   end
 end

@@ -7,7 +7,7 @@ class Author < ActiveRecord::Base
 
   private
 
-    def name_length
+  def name_length
     unless name.nil?
       
       if name.length < 2

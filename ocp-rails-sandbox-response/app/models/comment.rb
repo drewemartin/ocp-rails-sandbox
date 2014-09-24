@@ -5,6 +5,8 @@ class Comment < ActiveRecord::Base
   validates :body, presence: true
   validate :body_length
 
+  scope :range, -> { where('created_at >= :seven_days_ago ',:seven_days_ago  => DateTime.now - 7.days) }
+
   private
 
   def body_length
@@ -17,3 +19,4 @@ class Comment < ActiveRecord::Base
     end
   end
 end
+

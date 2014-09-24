@@ -8,7 +8,7 @@ class Author < ActiveRecord::Base
   def self.trending
     hash = {}
     all.each{|x|
-      hash[x.id] = x.comments.count
+      hash[x.id] = x.comments.where("comments.created_at >= ?", Time.zone.now - 7.days).count
     }
     new_hash = hash.sort_by {|k,v| v}.reverse!
     new_hash.to_h.delete_if {|k, v| v < 1 } 
@@ -18,9 +18,6 @@ class Author < ActiveRecord::Base
       end
     end
   end
-
-# a.comments.where('created_at >= :seven_days_ago ',:seven_days_ago  => DateTime.now - 7.days)
-
 
   private
 

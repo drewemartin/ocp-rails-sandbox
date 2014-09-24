@@ -5,6 +5,7 @@ class Author < ActiveRecord::Base
   validates :name, presence: true
   validate :name_length
 
+
   private
 
   def name_length

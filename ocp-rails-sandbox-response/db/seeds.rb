@@ -19,3 +19,4 @@ end
 1000.times do
   Comment.create!(body: Faker::Lorem.paragraph, post_id: (1..100).to_a.sample)
 end
+

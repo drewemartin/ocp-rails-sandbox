@@ -5,15 +5,13 @@ class Comment < ActiveRecord::Base
   validates :body, presence: true
   validate :body_length
 
-  scope :range, -> { where('created_at >= :seven_days_ago ',:seven_days_ago  => DateTime.now - 7.days) }
-
   private
 
   def body_length
     unless body.nil?
 
       if body.length < 5
-        errors.add(:body, 'must be less than 300 character')
+        errors.add(:body, 'must be more than fout characters')
       end
 
     end

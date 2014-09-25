@@ -17,5 +17,31 @@ describe Author do
 
   end
 
+  context 'scopes, class methods, associations' do
+    it "an instance of Author should be able to find its posts" do
+      @author = FactoryGirl.build(:author)
+      @post = @author.posts.build(body:'hello', subject:'hello agains')
+      @author.posts.should include(@post)
+    end
+
+    it "an instance of Author should be able to find its posts" do
+      @author = FactoryGirl.build(:author)
+      @post = @author.posts.build(body:'hello', subject:'hello agains')
+      @comment1 = @post.comments.build(body: 'this is the body')
+      @comment2 = @post.comments.build(body: 'this was the body')
+      @comment3 = @post.comments.build(body: 'this shall be the body')
+      @author.comments.should include(@comment1)
+    end
+
+    it "an instance of Author should be able to find its posts" do
+      @author = FactoryGirl.build(:author)
+      @post = @author.posts.build(body:'hello', subject:'hello agains')
+      @comment1 = @post.comments.build(body: 'this is the body')
+      @comment2 = @post.comments.build(body: 'this was the body')
+      @comment3 = @post.comments.build(body: 'this shall be the body')
+      @author.comments.should include(@comment1)
+    end
+  end
+
   
 end

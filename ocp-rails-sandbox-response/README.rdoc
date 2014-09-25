@@ -12,8 +12,7 @@ Author, Post, Comment models
 
 Author.trending 
 
-* Class method / scope that returns authors in descending order 
-of their most recent comments from the last 7 days 
+* Class method / scope that returns authors in descending order of their most recent comments from the last 7 days 
 
 Rspec tests
 * All models are tested w/ respective validations 

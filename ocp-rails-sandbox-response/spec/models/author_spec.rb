@@ -13,7 +13,6 @@ describe Author do
       @comment3 = @post.comments.build(id: 3, body: 'this shall be the body', created_at: Time.now - 7.minutes)
       Author.last.should == @author
     end 
-    #<Comment id: nil, body: "this is the body", post_id: 1, created_at: nil, updated_at: nil>
   end
 
   describe ".trending" do
@@ -24,10 +23,23 @@ describe Author do
       @comment1 = @post.comments.build(id: 1, body: 'this is the body', created_at: Time.now - 9.years)
       @comment2 = @post.comments.build(id: 2, body: 'this was the body', created_at: Time.now - 8.years)
       @comment3 = @post.comments.build(id: 3, body: 'this shall be the body', created_at: Time.now - 7.minutes)
-      Author.trending.should == @comment3
+      Author.trending.should include(@comment3)
     end 
-    #<Comment id: nil, body: "this is the body", post_id: 1, created_at: nil, updated_at: nil>
   end
+
+    describe ".trending" do
+
+  it "an instance of Author should not be able to return non-trending" do
+      @author = FactoryGirl.build(:author, name:'drew', created_at: Time.now - 11.years, id: 1)
+      @post = @author.posts.build(id: 1, body:'hello', subject:'hello agains', created_at: Time.now - 10.years)
+      @comment1 = @post.comments.build(id: 1, body: 'this is the body', created_at: Time.now - 9.years)
+      @comment2 = @post.comments.build(id: 2, body: 'this was the body', created_at: Time.now - 8.years)
+      @comment3 = @post.comments.build(id: 3, body: 'this shall be the body', created_at: Time.now - 7.minutes)
+      Author.trending.should_not include(@comment1)
+      
+    end 
+  end
+
 
 
   context 'before creations' do

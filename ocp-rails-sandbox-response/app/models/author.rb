@@ -12,7 +12,7 @@ class Author < ActiveRecord::Base
     }
     hash = hash.sort_by {|k,v| v}.reverse!.to_h
     hash.delete_if {|k, v| v < 1 } 
-    hash.map do |k,v,|
+    hash.map do |k,v|
         self.find(k)      
     end
   end

@@ -5,7 +5,7 @@ describe Author do
 
   describe "class methods" do
 
-    it "should be able to call class methods" do
+    it "should be able to call instance methods" do
       @author = FactoryGirl.create(:author)
       @post = @author.posts.create(id: 1, body:'hello', subject:'hello agains', created_at: Time.now - 10.minutes)
       @comment1 = @post.comments.create(id: 1, body: 'this is the body', created_at: Time.now - 9.minutes)

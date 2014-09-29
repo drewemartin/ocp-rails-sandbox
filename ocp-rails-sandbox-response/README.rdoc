@@ -1,28 +1,18 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ocp-rails-sandbox-response
 
-Things you may want to cover:
+includes: 
 
-* Ruby version
+Author, Post, Comment models
 
-* System dependencies
+* Author has many Posts and many Comments through Posts
+* Posts belong to Author and have many Comments
+* Comments belong to Post 
 
-* Configuration
+Author.trending 
 
-* Database creation
+* Class method / scope that returns authors in descending order of their most recent comments from the last 7 days 
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Rspec tests
+* All models are tested w/ respective validations 

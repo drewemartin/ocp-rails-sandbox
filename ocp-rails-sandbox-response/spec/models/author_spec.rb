@@ -7,10 +7,10 @@ describe Author do
 
     it "should be able to call class methods" do
       @author = FactoryGirl.create(:author)
-      @post = @author.posts.build(id: 1, body:'hello', subject:'hello agains', created_at: Time.now - 10.minutes)
-      @comment1 = @post.comments.build(id: 1, body: 'this is the body', created_at: Time.now - 9.minutes)
-      @comment2 = @post.comments.build(id: 2, body: 'this was the body', created_at: Time.now - 8.minutes)
-      @comment3 = @post.comments.build(id: 3, body: 'this shall be the body', created_at: Time.now - 7.minutes)
+      @post = @author.posts.create(id: 1, body:'hello', subject:'hello agains', created_at: Time.now - 10.minutes)
+      @comment1 = @post.comments.create(id: 1, body: 'this is the body', created_at: Time.now - 9.minutes)
+      @comment2 = @post.comments.create(id: 2, body: 'this was the body', created_at: Time.now - 8.minutes)
+      @comment3 = @post.comments.create(id: 3, body: 'this shall be the body', created_at: Time.now - 7.minutes)
       Author.last.should == @author
     end 
   end
@@ -18,12 +18,12 @@ describe Author do
   describe ".trending" do
 
     it "an instance of Author should be able to return trending" do
-      @author = FactoryGirl.build(:author, name:'drew', created_at: Time.now - 11.years, id: 1)
-      @post = @author.posts.build(id: 1, body:'hello', subject:'hello agains', created_at: Time.now - 10.years)
-      @comment1 = @post.comments.build(id: 1, body: 'this is the body', created_at: Time.now - 9.years)
-      @comment2 = @post.comments.build(id: 2, body: 'this was the body', created_at: Time.now - 8.years)
-      @comment3 = @post.comments.build(id: 3, body: 'this shall be the body', created_at: Time.now - 7.minutes)
-      Author.trending.should include(@comment3)
+      @author = FactoryGirl.create(:author, name:'drew', created_at: Time.now - 11.years, id: 1)
+      @post = @author.posts.create(id: 1, body:'hello', subject:'hello agains', created_at: Time.now - 10.years)
+      @comment1 = @post.comments.create(id: 1, body: 'this is the body', created_at: Time.now - 9.years)
+      @comment2 = @post.comments.create(id: 2, body: 'this was the body', created_at: Time.now - 8.years)
+      @comment3 = @post.comments.create(id: 3, body: 'this shall be the body', created_at: Time.now - 7.minutes)
+      Author.trending.should include(@author)
     end 
   end
 

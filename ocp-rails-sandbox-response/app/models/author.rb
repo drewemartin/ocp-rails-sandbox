@@ -17,6 +17,10 @@ class Author < ActiveRecord::Base
     end
   end
 
+  def first_letter
+    name[0]
+  end
+
   private
 
   def name_length

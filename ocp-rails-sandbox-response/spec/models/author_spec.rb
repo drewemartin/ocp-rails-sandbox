@@ -27,16 +27,26 @@ describe Author do
     end 
   end
 
-    describe ".trending" do
+  describe ".trending" do
 
-  it "an instance of Author should not be able to return non-trending" do
-      @author = FactoryGirl.build(:author, name:'drew', created_at: Time.now - 11.years, id: 1)
-      @post = @author.posts.build(id: 1, body:'hello', subject:'hello agains', created_at: Time.now - 10.years)
-      @comment1 = @post.comments.build(id: 1, body: 'this is the body', created_at: Time.now - 9.years)
-      @comment2 = @post.comments.build(id: 2, body: 'this was the body', created_at: Time.now - 8.years)
-      @comment3 = @post.comments.build(id: 3, body: 'this shall be the body', created_at: Time.now - 7.minutes)
-      Author.trending.should_not include(@comment1)
-      
+    it "an instance of Author should not be able to return non-trending" do
+      @author = FactoryGirl.create(:author, name:'drew', created_at: Time.now - 11.years, id: 1)
+      @post = @author.posts.create(id: 1, body:'hello', subject:'hello agains', created_at: Time.now - 10.years)
+      @comment1 = @post.comments.create(id: 1, body: 'this is the body', created_at: Time.now - 9.years)
+      @comment2 = @post.comments.create(id: 2, body: 'this was the body', created_at: Time.now - 8.years)
+      @comment3 = @post.comments.create(id: 3, body: 'this shall be the body', created_at: Time.now - 7.minutes)
+      Author.trending.should_not include(@comment1)  
+    end 
+  
+
+    it "another instance of Author should not be able to return non-trending" do
+      @author = FactoryGirl.create(:author, name:'drew', created_at: Time.now - 11.years, id: 1)
+      @post = @author.posts.create(id: 1, body:'hello', subject:'hello agains', created_at: Time.now - 10.years)
+      @comment1 = @post.comments.create(id: 1, body: 'this is the body', created_at: Time.now - 9.years)
+      @comment2 = @post.comments.create(id: 2, body: 'this was the body', created_at: Time.now - 8.years)
+      @comment3 = @post.comments.create(id: 3, body: 'this shall be the body', created_at: Time.now - 7.minutes)
+      @author2 = FactoryGirl.create(:author, name:'bob', created_at: Time.now - 11.years, id: 2)
+      Author.trending.should_not include(@author2)  
     end 
   end
 
